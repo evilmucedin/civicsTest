@@ -57,9 +57,31 @@ data = [
 ["How many amendments does the Constitution have?", ["twenty-seven"]]
 ]
 
+def isLetter(ch):
+    if ch >= 'a' and ch <= 'z':
+        return True
+    if ch >= 'A' and ch <= 'Z':
+        return True
+    return False
+
+def words(s):
+    in_word = False
+    begin = 0
+    for index, ch in enumerate(s + " "):
+        if in_word:
+            if not isLetter(ch):
+                yield s[begin:index]
+                in_word = False
+        else:
+            if isLetter(ch):
+                begin = index
+                in_word = True
+
+print(list(words("Woodraw Wilson")))
+
 def preprocess(s):
     result = set()
-    for p in s.split():
+    for p in words(s):
         p = p.lower()
         if p == "a":
             continue
