@@ -65,6 +65,8 @@ def preprocess(s):
             continue
         if p == "the":
             continue
+        if p == "an":
+            continue
         result.add(p)
     return result
 
