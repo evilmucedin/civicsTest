@@ -54,6 +54,7 @@ data = [
 ["Name one U.S. territory", ["Puerto Rico", "U.S. Virgin Islands", "American Samoa", "Northern Mariana Islands", "Guam"]],
 ["Where is the Statue of Liberty?", ["New York", "Liberty Island", "on the Hudson"]],
 ["What is the name of the national anthem?", ["The Star-Spangled Banner"]],
+["How many amendments does the Constitution have?", ["twenty-seven"]]
 ]
 
 def preprocess(s):
