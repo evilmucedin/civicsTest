@@ -59,20 +59,25 @@ data = [
 def preprocess(s):
     result = set()
     for p in s.split():
+        p = p.lower()
         if p == "a":
             continue
         if p == "the":
             continue
-        result.add(p.lower())
+        result.add(p)
     return result
 
 def eq(a, ans):
     return preprocess(a) == preprocess(ans)
 
 ok = 0
-N = 1
+N = 10
+asked = set()
 for i in range(N):
     i_q = random.randrange(len(data))
+    while i_q in asked:
+        i_q = random.randrange(len(data))
+    asked.add(i_q)
     q = data[i_q]
     print(q[0])
     answer = input()
