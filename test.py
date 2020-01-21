@@ -1,4 +1,6 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
+
+import random
 
 data = [
 ["What does the Constitution do?", ["sets up the government", "defines the government", "protects basic rights of Americans"]],
@@ -34,5 +36,54 @@ data = [
 ["When was the Declaration of Independence adopted?", ["July 4, 1776"]],
 ["There were 13 original states. Name three", ["New Hampshire", "Massachusetts", "Rhode Island", "Connecticut", "New York", "New Jersey", "Pennsylvania", "Delaware", "Maryland", "Virginia", "North Carolina", "South Carolina", "Georgia"]],
 ["What happened at the Constitutional Convention?", ["The Constitution was written", "The Founding Fathers wrote the Constitution"]],
-[""]
+["When was the Constitution written?", ["1787"]],
+["The Federalist Papers supported the passage of the U.S. Constitution. Name one of the writers.", ["James Madison", "Alexander Hamilton", "John Jay", "Publius"]],
+["What is one thing Benjamin Franklin is famous for?", ["U.S. diplomat", "oldest member of the Constitutional Convention", "first Postmaster General of the United States", "writer of Poor Richard’s Almanac", "started the first free libraries"]],
+["Who is the “Father of Our Country”?", ["George Washington"]],
+["Who was the first President?", ["George Washington"]],
+["Name one problem that led to the Civil War.", ["slavery", "economic reasons", "states’ rights"]],
+["What was one important thing that Abraham Lincoln did?", ["freed the slaves", " saved the Union", "led the United States during the Civil War"]],
+["What did the Emancipation Proclamation do?", ["freed the slaves", "freed slaves in the Confederacy"]],
+["What did Susan B. Anthony do?", ["fought for women’s rights", "fought for civil rights"]],
+["Who was President during World War I?", ["Woodrow Wilson"]],
+["Who was President during the Great Depression and World War II?", ["Franklin Roosevelt"]],
+["Who did the United States fight in World War II?", ["Japan, Germany, and Italy"]],
+["What movement tried to end racial discrimination?", ["civil rights"]],
+["What did Martin Luther King, Jr. do?", ["fought for civil rights", "worked for equality for all Americans"]],
+["What major event happened on September 11, 2001, in the United States?", ["Terrorists attacked the United States."]],
+["Name one U.S. territory", ["Puerto Rico", "U.S. Virgin Islands", "American Samoa", "Northern Mariana Islands", "Guam"]],
+["Where is the Statue of Liberty?", ["New York", "Liberty Island", "on the Hudson"]],
+["What is the name of the national anthem?", ["The Star-Spangled Banner"]],
 ]
+
+def preprocess(s):
+    result = set()
+    for p in s.split():
+        if p == "a":
+            continue
+        if p == "the":
+            continue
+        result.add(p.lower())
+    return result
+
+def eq(a, ans):
+    return preprocess(a) == preprocess(ans)
+
+ok = 0
+N = 1
+for i in range(N):
+    i_q = random.randrange(len(data))
+    q = data[i_q]
+    print(q[0])
+    answer = input()
+    q_ok = False
+    for a in q[1]:
+        if eq(a, answer):
+            q_ok = True
+    if q_ok:
+        print("ok")
+        ok += 1
+    else:
+        print("wrong:\n%s" % ("\n".join(q[1])))
+    print("%d/%d" % (ok, i + 1))
+print("%d/%d" % (ok, N))
